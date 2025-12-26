@@ -73,6 +73,18 @@ pipeline {
             }
         }
 
+         stage('build image') {
+            steps {
+                script{
+                    sh """
+                       docker build -t catalogue:${appversion}
+                       """
+                }
+                
+            
+            }
+        }
+
          stage('Install Dependencies') {
             steps {
                 script{

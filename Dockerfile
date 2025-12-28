@@ -10,7 +10,7 @@ FROM node:24.12.0-alpine3.22
 WORKDIR /opt/server
 EXPOSE 8080
 # Create a group and user
-RUN addgroup -S robosho && adduser -S roboshop -G roboshop 
+RUN addgroup -S roboshop && adduser -S roboshop -G roboshop 
 LABEL com.project="roboshop" \
     component="catalogue" \
     craetedby="hari"

@@ -10,7 +10,7 @@ pipeline {
       appversion = ""
       account_id = "349727115914"
       project ="roboshop"
-      componenet = "catalogue"
+      component = "catalogue"
     }
 
     options {

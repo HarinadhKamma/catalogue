@@ -117,6 +117,9 @@ pipeline {
         // }
 
          stage('Sonar Scan'){
+            environment {
+                def scannerHome = tool 'sonar-8.0'
+            }
             steps {
                 script{
                     withSonarQubeEnv('sonar-server') {

@@ -8,6 +8,9 @@ pipeline {
     environment(){
       COURSE ="jenkins"
       appversion = ""
+      account_id = "349727115914"
+      project ="roboshop"
+      componenet = "catalogue"
     }
 
     options {
@@ -76,8 +79,14 @@ pipeline {
          stage('build image') {
             steps {
                 script{
+                    withAWS(credentials:'aws-cred') {
+    // do something
+}
                     sh """
-                       docker build -t catalogue:${appversion}
+                      aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin ${account_id}.dkr.ecr.us-east-1.amazonaws.com
+                      docker build -t  roboshop/catalogue:latest 349727115914.dkr.ecr.us-east-1.amazonaws.com/${project}/${component}:${appversion}
+                       docker images
+                       docker push ${appversion}.dkr.ecr.us-east-1.amazonaws.com/${component}/${component}:latest
                        """
                 }
                 

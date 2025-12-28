@@ -79,7 +79,7 @@ pipeline {
          stage('build image') {
             steps {
                 script{
-                    withCredentials([awsCredentials(credentialsId: 'aws-cred')]) {
+                    withAWS(credentials:'aws-cred') {
     // do something
 }
                     sh """

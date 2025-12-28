@@ -105,6 +105,26 @@ pipeline {
             
             }
         }
+
+        stage('Unit Test') {
+            steps {
+                script{
+                    sh """
+                        npm test
+                    """
+                }
+            }
+        }
+
+         stage('Sonar Scan'){
+            steps {
+                script{
+                    withSonarQubeEnv('sonar-server') {
+                        sh  "${scannerHome}/bin/sonar-scanner"
+                    }
+                }
+            }
+        }
     }
         post{
             always{

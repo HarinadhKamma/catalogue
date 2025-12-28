@@ -106,25 +106,25 @@ pipeline {
             }
         }
 
-        stage('Unit Test') {
-            steps {
-                script{
-                    sh """
-                        npm test
-                    """
-                }
-            }
-        }
-
-        //  stage('Sonar Scan'){
+        // stage('Unit Test') {
         //     steps {
         //         script{
-        //             withSonarQubeEnv('sonar-server') {
-        //                 sh  "${scannerHome}/bin/sonar-scanner"
-        //             }
+        //             sh """
+        //                 npm test
+        //             """
         //         }
         //     }
         // }
+
+         stage('Sonar Scan'){
+            steps {
+                script{
+                    withSonarQubeEnv('sonar-server') {
+                        sh  "${scannerHome}/bin/sonar-scanner"
+                    }
+                }
+            }
+        }
     }
         post{
             always{
